@@ -16,8 +16,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// ルート情報を記述する
+// Part3 ルート情報を記述する
 // get方式、URLがhelloの時、HelloControllerに定義したindexメソッドを使う、という意味
 Route::get('hello' , 'HelloController@index');
 Route::get('hello/view' , 'HelloController@view');
+Route::get('hello/list' , 'HelloController@list');
 
+// Part4
+Route::get('view/escape' , 'ViewController@escape');
+Route::get('view/if' , 'ViewController@if');
+Route::get('view/isset' , 'ViewController@isset');
+Route::get('view/switch' , 'ViewController@switch');
+Route::get('view/while' , 'ViewController@while');
+Route::get('view/list_foreach' , 'ViewController@list_foreach');
+Route::get('view/foreach_assoc' , 'ViewController@foreach_assoc');
+Route::get('view/foreach_loop' , 'ViewController@foreach_loop');
