@@ -74,6 +74,12 @@ class ViewController extends Controller
       ]);
     }
 
-
+    public function forelse() {
+      $data = [
+        'records' => Book::all(),
+        'emptyRe' => '',
+      ];
+      return view('view.forelse',$data);
+    }
 
 }
