@@ -32,3 +32,8 @@ Route::get('view/list_foreach' , 'ViewController@list_foreach');
 Route::get('view/foreach_assoc' , 'ViewController@foreach_assoc');
 Route::get('view/foreach_loop' , 'ViewController@foreach_loop');
 Route::get('view/forelse' , 'ViewController@forelse');
+//4.3 レイアウト
+Route::get('view/master' , 'ViewController@master');
+Route::get('view/comp' , 'ViewController@comp');
+Route::get('subviews/subview' , 'ViewController@subview');
+Route::get('view/list' , 'ViewController@list');
