@@ -31,3 +31,38 @@ Route::get('view/while' , 'ViewController@while');
 Route::get('view/list_foreach' , 'ViewController@list_foreach');
 Route::get('view/foreach_assoc' , 'ViewController@foreach_assoc');
 Route::get('view/foreach_loop' , 'ViewController@foreach_loop');
+Route::get('view/forelse' , 'ViewController@forelse');
+//4.3 レイアウト
+Route::get('view/master' , 'ViewController@master');
+Route::get('view/comp' , 'ViewController@comp');
+Route::get('subviews/subview' , 'ViewController@subview');
+Route::get('view/list' , 'ViewController@list');
+
+// Part5 ルーティング
+Route::match(['get','post'],'routes/test', 'RouteController@test');
+// ブラウザのURIに入れた値がコントローラで処理される
+// ?を書かないと必須となる
+Route::get('routes/param/{id?}', 'RouteController@param');
+
+// 5.2.3 ;を1行目の後に付けないこと、正規表現2番目のカッコは{}
+Route::get('routes/param2/{id?}' , 'RouteController@param2')
+  ->where(['id' => '[0-9]{2,3}']);
+
+// 5.2.4
+Route::get('routes/search/{keywd?}' , 'RouteController@search')
+  ->where('keywd' , '.*');
+
+// 5.3.1 routes/members/...のURLをまとめてルーティングする
+// (ルートグループ)
+Route::prefix('routes/members')->group(function () {
+  Route::get('info' , 'RouteController@info');
+  Route::get('article' , 'RouteController@article');
+});
+
+// 5.3.3
+Route::view('/route', 'routes.test', ['name' => 'Laravel']);
+
+// 5.3.4 リダイレクト /hogeにアクセスすると/routeに飛ぶようになった
+// 301はステータスコード
+Route::redirect('/hoge', '/route', 301);
+

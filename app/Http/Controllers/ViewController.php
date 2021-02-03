@@ -74,6 +74,34 @@ class ViewController extends Controller
       ]);
     }
 
+    public function forelse() {
+      $data = [
+        'records' => Book::all(),
+        'emptyRe' => '',
+      ];
+      return view('view.forelse',$data);
+    }
 
+    //4.3 レイアウト
+    public function master() {
+      return view('view.master', [
+        'msg' => 'こんにちは〜',
+      ]);
+    }
+
+    public function comp() {
+      return view('view.comp');
+    }
+
+    public function subview() {
+      return view('subviews.subview');
+    }
+
+    public function list() {
+      $data = [
+        'records' => Book::all()
+      ];
+      return view('view.list', $data);
+    }
 
 }
