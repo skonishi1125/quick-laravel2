@@ -61,3 +61,8 @@ Route::prefix('routes/members')->group(function () {
 
 // 5.3.3
 Route::view('/route', 'routes.test', ['name' => 'Laravel']);
+
+// 5.3.4 リダイレクト /hogeにアクセスすると/routeに飛ぶようになった
+// 301はステータスコード
+Route::redirect('/hoge', '/route', 301);
+
