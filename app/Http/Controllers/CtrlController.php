@@ -48,14 +48,14 @@ class CtrlController extends Controller
       return view('ctrl.form',['result'=>'']);
     }
 
-    public function result(Request $req) {
-      // ->nameはinput name=""で指定されたものが入る
-      // $name = $req->name;
-      $name = $req->input('name','名無しのゴべえ');
-      return view('ctrl.form', [
-        'result'=>'こんにちは、' . $name . 'さん！'
-      ]);
-    }
+    // public function result(Request $req) {
+    //   // ->nameはinput name=""で指定されたものが入る
+    //   // $name = $req->name;
+    //   $name = $req->input('name','名無しのゴべえ');
+    //   return view('ctrl.form', [
+    //     'result'=>'こんにちは、' . $name . 'さん！'
+    //   ]);
+    // }
 
     // 6.2.3
     public function upload() {
@@ -86,7 +86,25 @@ class CtrlController extends Controller
       return 'log is recorded!!';
     }
 
-    
+    // 7.2.5
+    public function result(Request $req) {
+      $name = $req->name;
+      // 入力されているか or 10文字以内であるか
+      if (empty($name) || mb_strlen($name) > 10 ) {
+        // // フォームを再表示する
+        // return redirect('ctrl/form')
+        //   ->withInput()
+        //   ->with('alert', '名前は必須、または１０文字以内で入力してください。');
+      } else {
+        // return view('ctrl.form', [
+        //   'result' => 'こんにちは、' . $req->name . 'さん！'
+        // ]);
+      }
+      return view('ctrl.form',[
+        'test'=>'aaa',
+      ]);
+    }
+
 
 
 }
