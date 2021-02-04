@@ -12,6 +12,10 @@
 */
 
 // 最初から記載されている/ルート
+
+use App\Http\Controllers\CtrlController;
+use App\Http\Middleware\LogMiddleware;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -66,3 +70,28 @@ Route::view('/route', 'routes.test', ['name' => 'Laravel']);
 // 301はステータスコード
 Route::redirect('/hoge', '/route', 301);
 
+// Part6 6.1.2
+Route::get('ctrl/header' , 'CtrlController@header');
+
+// 6.1.4 これにアクセスすると画像ファイルを読み込ませることができる
+Route::get('ctrl/outFile' , 'CtrlController@outFile');
+Route::get('ctrl/outImage' , 'CtrlController@outImage');
+Route::get('ctrl/redirectBasic' , 'CtrlController@redirectBasic');
+// 6.2
+Route::get('ctrl/index' , 'CtrlController@index');
+// 6.2.2 プチハンズオン POST形式なのでこれもpostにする
+// postにしたのにエラーになるからmatchにした
+Route::match(['get','post'],'ctrl/result' , 'CtrlController@result');
+// Route::post('ctrl/result' , 'CtrlController@result');
+
+// 6.2.3
+Route::match(['get','post'],'ctrl/upload','CtrlController@upload');
+Route::match(['get','post'],'ctrl/uploadfile','CtrlController@uploadfile');
+
+// 6.3 手前に「use App\Http\Middleware\LogMiddleware」と書かないとdoes not existエラー
+// Route::get('ctrl/middle','CtrlController@middle')
+//   ->middleware(LogMiddleware::class);
+
+Route::group(['middleware'=>['debug']], function() {
+  Route::get('ctrl/middle','CtrlController@middle');
+});
