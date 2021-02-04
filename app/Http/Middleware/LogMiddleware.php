@@ -15,7 +15,10 @@ class LogMiddleware
      */
     public function handle($request, Closure $next)
     {
-        file_put_contents('/Users/skoni/Desktop/accesslog.txt',date('Y-m-d H:i:s')."\n",FILE_APPEND);
-        return $next($request);
+        file_put_contents('/Users/skoni/Desktop/quick-laravel2/storage/logs/accesslog.txt',date('Y-m-d H:i:s')."\n",FILE_APPEND);
+        $response = $next($request);
+        $response->setContent(mb_strtoupper($response->content()));
+        return $response;
+        // Kernel.phpに指定すると、全てのページで大文字になり、ログが記載されるようになった
     }
 }

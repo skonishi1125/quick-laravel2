@@ -89,5 +89,9 @@ Route::match(['get','post'],'ctrl/upload','CtrlController@upload');
 Route::match(['get','post'],'ctrl/uploadfile','CtrlController@uploadfile');
 
 // 6.3 手前に「use App\Http\Middleware\LogMiddleware」と書かないとdoes not existエラー
-Route::get('ctrl/middle','CtrlController@middle')
-  ->middleware(LogMiddleware::class);
+// Route::get('ctrl/middle','CtrlController@middle')
+//   ->middleware(LogMiddleware::class);
+
+Route::group(['middleware'=>['debug']], function() {
+  Route::get('ctrl/middle','CtrlController@middle');
+});

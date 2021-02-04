@@ -86,5 +86,7 @@ class CtrlController extends Controller
       return 'log is recorded!!';
     }
 
+    
+
 
 }
