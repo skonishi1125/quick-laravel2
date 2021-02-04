@@ -15,6 +15,7 @@
 
 use App\Http\Controllers\CtrlController;
 use App\Http\Middleware\LogMiddleware;
+// use Illuminate\Routing\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -95,3 +96,13 @@ Route::match(['get','post'],'ctrl/uploadfile','CtrlController@uploadfile');
 Route::group(['middleware'=>['debug']], function() {
   Route::get('ctrl/middle','CtrlController@middle');
 });
+
+// Part7
+Route::get('state/view','StateController@recCookie');
+Route::get('state/readcookie','StateController@readCookie');
+// Route::get('state/readsession','StateController@session1');
+Route::get('state/readsession','StateController@session2');
+Route::match(['get', 'post'], 'ctrl/form', 'CtrlController@result');
+
+
+

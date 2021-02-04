@@ -12,6 +12,7 @@ class EncryptCookies extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        //7.1.1 Noteの内容
+        'app_title',
     ];
 }
